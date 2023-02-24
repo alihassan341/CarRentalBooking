@@ -1,0 +1,71 @@
+﻿@using Car_Rental_booking.Model;
+@model IEnumerable<Client>
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Clients List</h1>
+<table>
+    <thead>
+        <tr>
+            <th>
+                 First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                PhoneNumber
+            </th>
+            <th>
+              Age
+            </th>
+            <th>
+             Address
+            </th>
+            <th>
+                PetName
+            </th>
+            <th>
+                Password
+            </th>
+           
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+       {
+            <tr>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td>
+                    @item.Email
+                </td>  
+                 <td>
+                    @item.PhoneNumber
+                </td>
+                <td>
+                    @item.Age
+                </td>
+                <td>
+                    @item.Address
+                </td>
+                <td>
+                    @item.PetName
+                </td>
+                <td>
+                    @item.Password
+
+                </td>
+
+            </tr>
+       }
+    </tbody>
+</table>
