@@ -25,14 +25,14 @@ namespace CarRentalBookingSystem.Controllers
         }
         [HttpGet]
         //[ActionName("Register")]
-        public IActionResult Register()
+        public IActionResult Create()
 
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(Client client)
+        public IActionResult Create(Client client)
         {
             if (ModelState.IsValid == true)
             {
