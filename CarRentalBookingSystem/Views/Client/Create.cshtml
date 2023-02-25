@@ -1,7 +1,37 @@
-﻿
+﻿@using Car_Rental_booking.Model;
+@model Client
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Register Client</h1>
+
+<Form method="post">
+   @* <div class="border p-3 mt-4">
+
+        <div calss="row pb-3">
+            <h2 class="text-primary">Client</h2>
+            <hr />
+
+            <div calss="row mb-3">
+                <label asp-for="FirstName"></label>
+                <input asp-for="Email" class="from-control" />
+            </div>
+            <butto class="btn btn-primary" type="submit">Create</butto>
+    </div>*@
+    <input asp-for="FirstName"> FirstName</input>
+    <input asp-for="LastName"> LastName</input>
+    <input asp-for="Email"> Email</input>
+    <input asp-for="Age">Age</input>
+    <input asp-for="Address">Address</input>
+    <input asp-for="PhoneNumber">PhoneNumber</input>
+    <input asp-for="PetName"> PetName</input>
+    <input asp-for="Password">Password</input>
+    
+    <button type="submit">Register</button>
+    <a asp-action="Create" asp-controller="Client"></a>
+
+</Form>
+
+
 

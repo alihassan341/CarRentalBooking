@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Principal;
 
 namespace Car_Rental_booking.Model
 {
@@ -22,9 +23,8 @@ namespace Car_Rental_booking.Model
         [Required]
         [DataType(DataType.Password)]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-        public string Password { get; set; }
-
-        public List<Booking> bookings { get; set; }
+        public string Password { get; set; }        
+        public virtual ICollection<Booking> Bookings{ get; set; }
     }
 
 

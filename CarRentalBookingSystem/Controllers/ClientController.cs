@@ -5,8 +5,8 @@ using System.Net;
 
 namespace CarRentalBookingSystem.Controllers
 {
-//    [ApiController]
-//    [Route("api/[controller]")]
+    //[ApiController]
+    //[Route("api/[controller]")]
     public class ClientController : Controller
     {
         private readonly Contaxt _context;
@@ -15,8 +15,7 @@ namespace CarRentalBookingSystem.Controllers
         {
             _context = context;
         }
-        [HttpGet]
-        //[ActionName]
+        [HttpGet]           
         public IActionResult Index()
         {
             IEnumerable<Client> Clients = _context.Clients;
@@ -24,7 +23,6 @@ namespace CarRentalBookingSystem.Controllers
             return View(Clients);
         }
         [HttpGet]
-        //[ActionName("Register")]
         public IActionResult Create()
 
         {
@@ -32,14 +30,32 @@ namespace CarRentalBookingSystem.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Client client)
-        {
-            if (ModelState.IsValid == true)
+       
+            public async Task<ActionResult<Client>> Create(Client? client)
             {
+                if (ModelState.IsValid == true)
+                {
                 _context.Clients.Add(client);
                 _context.SaveChangesAsync();
+                return View();
+
             }
-            return RedirectToAction("Index");
+            return BadRequest(ModelState);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Client>> DeleteCity(int id)
+        {
+            var Client = await _context.Clients.FindAsync(id);
+            if (Client == null)
+            {
+                return NotFound();
+            }
+
+            _context.Clients.Remove(Client);
+            await _context.SaveChangesAsync();
+
+            return Client;
         }
     }
 }
