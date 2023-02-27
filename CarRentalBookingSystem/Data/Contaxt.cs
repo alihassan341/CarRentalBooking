@@ -8,7 +8,7 @@ namespace CarRentalBookingSystem.Data
         public Contaxt(DbContextOptions<Contaxt> options)
             : base(options)
         { }
-
+            
         public DbSet<Admin> Admins{ get; set; }
         public DbSet<Booking> Bookings { get; set; }
         //public DbSet<BaseDto> baseDtos { get; set; }

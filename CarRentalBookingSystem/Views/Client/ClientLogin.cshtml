@@ -1,0 +1,21 @@
+﻿@using Car_Rental_booking.Model;
+@model  Client
+@{
+    ViewData["Title"] = "ClientLogin";
+}
+
+<h1>ClientLogin</h1>
+
+<Form method="post">
+    
+   
+        <label>Email</label>
+        <input asp-for="Email" />
+        <label>Password</label>
+        <input asp-for="Password" />
+  
+    <button type="submit">Login</button>
+    <a asp-action="ClientLogin" asp-controller="Client"></a>
+
+</Form>
+
