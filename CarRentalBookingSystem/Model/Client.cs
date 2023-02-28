@@ -23,8 +23,11 @@ namespace Car_Rental_booking.Model
         [Required]
         [DataType(DataType.Password)]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-        public string Password { get; set; }        
-        public virtual ICollection<Booking> Bookings{ get; set; }
+        public string Password { get; set; }   
+        //Need to ask haroon bhai or sir subhan 
+        //public ICollection<Booking> Bookings{ get; set; }
+        //public ICollection<Testimonial> Testimonials { get; set; }
+        
     }
 
 
