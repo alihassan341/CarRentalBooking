@@ -1,6 +1,10 @@
 using CarRentalBookingSystem.Data;
+using CarRentalBookingSystem.Model;
+using Castle.Core.Smtp;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Contaxt>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+//builder.Services.Configure<EmailSenderOptions>(Configuration.GetSection("EmailSender"));
+
+
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<Contaxt>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 var app = builder.Build();
@@ -21,8 +33,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-//app.UseRouting();
-//app.UseAuthorization();
+app.UseRouting();
+app.UseAuthorization();
 app.UseSession();
 app.UseStaticFiles();
 

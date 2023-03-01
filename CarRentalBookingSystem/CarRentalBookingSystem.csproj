@@ -13,7 +13,8 @@
     <None Remove="bin\**" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup>   
+    <PackageReference Include="Castle.Core" Version="5.1.1" />   
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.11">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -1,6 +1,10 @@
 ﻿using Car_Rental_booking.Model;
 using CarRentalBookingSystem.Data;
+using CarRentalBookingSystem.Model;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 
@@ -58,22 +62,56 @@ namespace CarRentalBookingSystem.Controllers
             {
                return NotFound(); 
             }
+            
             string message = LoginClient.FirstName+ " " + LoginClient.LastName;
+            //Session["id"] = client.Id.ToString();
+            //Session["UerName"] = client.Email.ToString();
             return  RedirectToAction("ClientProFile", "Client", new { message = message });
         }
 
+        public async Task<ActionResult> ForGotpasword(Client client)
+        {
+            if (client.Password == null || client.Password == string.Empty)
+            {
+                var  Password = await _context.Clients.Where(p => p.Email == client.Email && p.PetName == client.PetName).FirstOrDefaultAsync();
+
+                if (Password == null)
+                {
+                    return NotFound("Something went wrong");
+                }
+                else
+                {
+                    //ForGotpasword Id = Password.T;
+                    //await _context.ForGotpaswords.AddAsync(Id);
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }
+        }
 
 
         public ActionResult ClientProFile(string message)
         {
             ViewData["OK"] = message;
+
+            //if (Session["id"] == null)
+            //{
+            //    return RedirectToAction("login");
+            //}
+            //else
+            //{
+            //    return View();
+            //}
             return View();
         }
 
         
        public ActionResult Logout()
         {
-
+            //Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
 
