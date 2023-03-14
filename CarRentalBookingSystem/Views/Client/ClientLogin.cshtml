@@ -6,8 +6,7 @@
 
 <h1>ClientLogin</h1>
 
-<Form method="post">
-    
+<Form method="post">   
    
         <label>Email</label>
         <input asp-for="Email" />
@@ -15,7 +14,13 @@
         <input asp-for="Password" />
   
     <button type="submit">Login</button>
-    <a asp-action="ClientLogin" asp-controller="Client"></a>
+    @*<a asp-action="ClientLogin" asp-controller="Client"></a>*@
+    
 
+    <button type="submit" asp-action="ForGotpasword">Forgot your password?</button>
+    @*<a asp-action="ForGotpasword" asp-controller="Client"></a>*@
+    @*<a asp-action="" asp-controller="Client"></a>*@
 </Form>
+
+
 

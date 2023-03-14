@@ -6,9 +6,9 @@ namespace Car_Rental_booking.Model
     public class Client : BaseDto
     {
         [Required]
-        public string  FirstName { get; set; }
+        public string FirstName { get; set; }
         [Required]
-        public string  LastName { get; set; }
+        public string LastName { get; set; }
         [Required]
         [EmailAddress]
         public string Email { get; set; }

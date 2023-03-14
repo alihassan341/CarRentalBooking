@@ -13,6 +13,87 @@
     <None Remove="bin\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Home\2.cshtml" />
+    <Content Remove="Views\Templates\about.cshtml" />
+    <Content Remove="Views\Templates\MasterLayout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\2.cshtml" />
+    <None Include="Views\Templates\about.cshtml" />
+    <None Include="Views\Templates\MasterLayout.cshtml" />
+    <None Include="wwwroot\Static\bootstrap\css\bootstrap.min.css" />
+    <None Include="wwwroot\Static\bootstrap\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\Static\css\ajax-loader.gif" />
+    <None Include="wwwroot\Static\css\animate.min.css" />
+    <None Include="wwwroot\Static\css\datepicker.css" />
+    <None Include="wwwroot\Static\css\fonts\slick-2.html" />
+    <None Include="wwwroot\Static\css\fonts\slick.html" />
+    <None Include="wwwroot\Static\css\fonts\slick.ttf" />
+    <None Include="wwwroot\Static\css\fonts\slick.woff" />
+    <None Include="wwwroot\Static\css\fonts\slickd41d.html" />
+    <None Include="wwwroot\Static\css\mobyle.css" />
+    <None Include="wwwroot\Static\css\slick-theme.css" />
+    <None Include="wwwroot\Static\css\slick.css" />
+    <None Include="wwwroot\Static\css\style.css" />
+    <None Include="wwwroot\Static\font-awesome\css\all.min.css" />
+    <None Include="wwwroot\Static\font-awesome\webfonts\fa-brands-400.ttf" />
+    <None Include="wwwroot\Static\font-awesome\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\Static\font-awesome\webfonts\fa-regular-400.ttf" />
+    <None Include="wwwroot\Static\font-awesome\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\Static\font-awesome\webfonts\fa-solid-900.ttf" />
+    <None Include="wwwroot\Static\font-awesome\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\Static\image\cars\compact\compact1.png" />
+    <None Include="wwwroot\Static\image\cars\compact\compact2.png" />
+    <None Include="wwwroot\Static\image\cars\compact\compact3.png" />
+    <None Include="wwwroot\Static\image\cars\economy\ecocar1.png" />
+    <None Include="wwwroot\Static\image\cars\economy\ecocar2.png" />
+    <None Include="wwwroot\Static\image\cars\economy\ecocar3.png" />
+    <None Include="wwwroot\Static\image\cars\economy\ecocar4.png" />
+    <None Include="wwwroot\Static\image\cars\economy\ecocar5.png" />
+    <None Include="wwwroot\Static\image\cars\economy\ecocar6.png" />
+    <None Include="wwwroot\Static\image\cars\electric\electric1.png" />
+    <None Include="wwwroot\Static\image\cars\electric\electric2.png" />
+    <None Include="wwwroot\Static\image\cars\electric\electric3.png" />
+    <None Include="wwwroot\Static\image\cars\peugeot\peugeot1.png" />
+    <None Include="wwwroot\Static\image\cars\peugeot\peugeot2.png" />
+    <None Include="wwwroot\Static\image\cars\peugeot\peugeot3.png" />
+    <None Include="wwwroot\Static\image\cars\peugeot\peugeot4.png" />
+    <None Include="wwwroot\Static\image\cars\peugeot\peugeot5.png" />
+    <None Include="wwwroot\Static\image\cars\peugeot\peugeot6.png" />
+    <None Include="wwwroot\Static\image\cars\peugeot\peugeot7.png" />
+    <None Include="wwwroot\Static\image\cars\peugeot\peugeot8.png" />
+    <None Include="wwwroot\Static\image\category\category1.png" />
+    <None Include="wwwroot\Static\image\category\category2.png" />
+    <None Include="wwwroot\Static\image\category\category3.png" />
+    <None Include="wwwroot\Static\image\category\category4.png" />
+    <None Include="wwwroot\Static\image\category\category5.png" />
+    <None Include="wwwroot\Static\image\category\category6.png" />
+    <None Include="wwwroot\Static\image\category\category7.png" />
+    <None Include="wwwroot\Static\image\category\category8.png" />
+    <None Include="wwwroot\Static\image\category\category9.png" />
+    <None Include="wwwroot\Static\image\slider\slider1.png" />
+    <None Include="wwwroot\Static\image\slider\slider2.png" />
+    <None Include="wwwroot\Static\image\slider\slider3.png" />
+    <None Include="wwwroot\Static\image\slider\slider4.png" />
+    <None Include="wwwroot\Static\image\slider\slider5.jpg" />
+    <None Include="wwwroot\Static\image\slider\slider6.jpg" />
+    <None Include="wwwroot\Static\image\slider\slider8.png" />
+    <None Include="wwwroot\Static\image\team\team1.jpg" />
+    <None Include="wwwroot\Static\image\team\team2.jpg" />
+    <None Include="wwwroot\Static\image\team\team3.jpg" />
+    <None Include="wwwroot\Static\image\team\team4.jpg" />
+    <None Include="wwwroot\Static\image\team\team5.jpg" />
+    <None Include="wwwroot\Static\jquery\jquery-3.6.0.min.js" />
+    <None Include="wwwroot\Static\js\date.js" />
+    <None Include="wwwroot\Static\js\datecar.js" />
+    <None Include="wwwroot\Static\js\datepicker.min.js" />
+    <None Include="wwwroot\Static\js\main.js" />
+    <None Include="wwwroot\Static\js\scroll.js" />
+    <None Include="wwwroot\Static\js\slick.js" />
+  </ItemGroup>
+
   <ItemGroup>   
     <PackageReference Include="Castle.Core" Version="5.1.1" />   
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.11">

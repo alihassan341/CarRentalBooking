@@ -1,0 +1,18 @@
+﻿@using Car_Rental_booking.Model;
+@model Client
+@{
+    ViewData["Title"] = "ForGotpasword";
+}
+
+<h1>RecoverPasswordbyemail</h1>
+
+<form method="post">
+    
+    <label>Email</label>
+    <input asp-for="Email" />
+    <label>PetName</label>
+    <input asp-for="PetName" />
+    <button type="submit">Change your password</button>
+    <a asp-action="ForGotpasword" asp-controller="Client"></a>
+
+</form>

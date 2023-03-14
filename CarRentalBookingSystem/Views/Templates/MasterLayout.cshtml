@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<!-- Mirrored from carrental.lanams.eu/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Dec 2022 16:49:59 GMT -->
+<head>
+        <title> {% block title %}{% endblock title %} | Car Rental</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/font-awesome/css/all.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/../cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="/static/css/slick.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/slick-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/datepicker.css" rel="stylesheet" type="text/css"/> 
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/mobyle.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/animate.min.css" rel="stylesheet" type="text/css"/>
+
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Rubik&amp;display=swap" rel="stylesheet">
+
+
+    </head>
+    <body>
+      
+<style>
+            .open-button {
+          background-color: #555;
+          color: white;
+          padding: 16px 20px;
+          border: none;
+          cursor: pointer;
+          opacity: 0.8;
+          position: fixed;
+          bottom: 23px;
+          right: 28px;
+          width: 280px;
+        }
+        .form-popup {
+          display: none;
+          position: fixed;
+          bottom: 0;
+          right: 15px;
+          border: 3px solid #f1f1f1;
+          z-index: 9;
+        }
+        .form-container {
+          max-width: 300px;
+          padding: 10px;
+          background-color: white;
+        }
+        
+        /* Full-width input fields */
+        .form-container input[type=text], .form-container input[type=password] {
+          width: 100%;
+          padding: 15px;
+          margin: 5px 0 22px 0;
+          border: none;
+          background: #f1f1f1;
+        }
+        
+        /* When the inputs get focus, do something */
+        .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+          background-color: #ddd;
+          outline: none;
+        }
+        
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+          background-color: #04AA6D;
+          color: white;
+          padding: 16px 20px;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+          margin-bottom:10px;
+          opacity: 0.8;
+        }
+        
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+          background-color: red;
+        }
+        
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover, .open-button:hover {
+          opacity: 1;
+        }
+        </style>
+
+        <!-- Navbar Start -->
+        <div class="container-fluid position-relative  nav-bar">
+            <div class="position-relative px-lg-5" style="z-index: 9;">
+                <nav class="navbar navbar-expand-lg bg-secondary navbar-dark py-3 py-lg-0 pl-3 pl-lg-5">
+                    <div class="container">
+                        <a href="/" class="navbar-brand"> <!--Need to check-->
+                            <h1 class="text-uppercase text-primary mb-1">Car Rental</h1>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarCollapse">
+                            <ul class="navbar-nav mx-auto py-0">
+                                <li><a href="/" class="nav-item nav-link active">Home</a></li>
+                                <li><a href="/About" class="nav-item nav-link">About</a></li>
+                                <li class="nav-item dropdown">
+                                    <a href="#" id="menu" data-bs-toggle="dropdown" class="nav-link dropdown-toggle" data-bs-display="static">Cars</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a href="/category" class="dropdown-item">Economy</a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="category.html" class="dropdown-item">Compact</a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="/category" class="dropdown-item">Full Size</a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="/category" class="dropdown-item">Estate</a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="/category" class="dropdown-item">Minivan</a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="/category" class="dropdown-item">SUV</a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="/category" class="dropdown-item">Luxury</a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="/category" class="dropdown-item">Electric</a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="/category" class="dropdown-item">Cargo</a>
+                                        </li>
+                                    </ul>
+                                </li>                            
+                                <li><a href="/service" class="nav-item nav-link">Service</a></li>
+                                <li><a href="/Contact" class="nav-item nav-link">Contact</a></li>
+                                <li><a href="/Signup" class="nav-item nav-link">Signup</a></li>
+                                <li><a class="nav-item nav-link" onclick="openForm()">Login</a></li>
+                                <!-- <button class="open-button" onclick="openForm()">Open Form</button> -->
+                                <li class="nav-item dropdown">
+                                    <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle nav-item nav-link">My Account</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/account" class="dropdown-item">My Account</a></li>
+                                        <li><a href="/booking" class="dropdown-item">Booking</a></li>
+                                    </ul>
+                                </li>        
+                            </ul>
+                        </div>      
+                    </div>    
+                </nav>
+            </div>
+        </div>        
+        <!-- Navbar End -->
+
+        <!-- Search Start -->
+        <div class="search">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-12">
+                        <select class="custom-select px-4">
+                            <option selected>Pickup Location</option>
+                            <option value="1">Toronto Airport</option>
+                            <option value="2">Birmingham</option>
+                            <option value="3">Cardiff</option>
+                            <option value="4">Coventry</option>
+                            <option value="5">Edinburgh</option>
+                            <option value="6">Leeds</option>
+                            <option value="7">Liverpool</option>
+                            <option value="8">Leicester</option>
+                            <option value="9">London</option>
+                            <option value="10">London City</option>
+                            <option value="11">London Gatwick</option>
+                            <option value="12">London Heathrow</option>
+                            <option value="13">London Luton</option>
+                            <option value="14">London Stansted</option>
+                            <option value="15">Manchester</option>
+                            <option value="16">Nottingham</option>
+                            <option value="17">Sheffield</option>
+                            <option value="18">Sunderland</option>
+                            <option value="19">Southampton</option>
+                            <option value="20">Tottenham</option>
+                        </select>
+                    </div>
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-12">
+                        <select class="custom-select px-4">
+                            <option selected>Drop Location</option>
+                            <option value="1">Birmingham</option>
+                            <option value="2">Bristol</option>
+                            <option value="3">Cardiff</option>
+                            <option value="4">Coventry</option>
+                            <option value="5">Edinburgh</option>
+                            <option value="6">Leeds</option>
+                            <option value="7">Liverpool</option>
+                            <option value="8">Leicester</option>
+                            <option value="9">London</option>
+                            <option value="10">London City</option>
+                            <option value="11">London Gatwick</option>
+                            <option value="12">London Heathrow</option>
+                            <option value="13">London Luton</option>
+                            <option value="14">London Stansted</option>
+                            <option value="15">Manchester</option>
+                            <option value="16">Nottingham</option>
+                            <option value="17">Sheffield</option>
+                            <option value="18">Sunderland</option>
+                            <option value="19">Southampton</option>
+                            <option value="20">Tottenham</option>
+                        </select>
+                    </div>
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-12">
+                        <input name="check-in" type="text" class="form-control" id="inputCheckIn" placeholder="Pickup Date">
+                    </div>
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-12">
+                        <select class="custom-select px-4">
+                            <option selected>Drop Off Time</option>
+                            <option value="00:30" >12:30 AM</option>
+                            <option value="01:00" >01:00 AM</option>
+                            <option value="01:30" >01:30 AM</option>
+                            <option value="02:00" >02:00 AM</option>
+                            <option value="02:30" >02:30 AM</option>
+                            <option value="03:00" >03:00 AM</option>
+                            <option value="03:30" >03:30 AM</option>
+                            <option value="04:00" >04:00 AM</option>
+                            <option value="04:30" >04:30 AM</option>
+                            <option value="05:00" >05:00 AM</option>
+                            <option value="05:30" >05:30 AM</option>
+                            <option value="06:00" >06:00 AM</option>
+                            <option value="06:30" >06:30 AM</option>
+                            <option value="07:00" >07:00 AM</option>
+                            <option value="07:30" >07:30 AM</option>
+                            <option value="08:00" >08:00 AM</option>
+                            <option value="08:30" >08:30 AM</option>
+                            <option value="09:00" >09:00 AM</option>
+                            <option value="09:30" >09:30 AM</option>
+                            <option value="10:00" >10:00 AM</option>
+                            <option value="10:30" >10:30 AM</option>
+                            <option value="11:00" >11:00 AM</option>
+                            <option value="11:30" >11:30 AM</option>
+                            <option value="12:00" >12:00 PM</option>
+                            <option value="12:30" >12:30 PM</option>
+                            <option value="13:00" >01:00 PM</option>
+                            <option value="13:30" >01:30 PM</option>
+                            <option value="14:00" >02:00 PM</option>
+                            <option value="14:30" >02:30 PM</option>
+                            <option value="15:00" >03:00 PM</option>
+                            <option value="15:30" >03:30 PM</option>
+                            <option value="16:00" >04:00 PM</option>
+                            <option value="16:30" >04:30 PM</option>
+                            <option value="17:00" >05:00 PM</option>
+                            <option value="17:30" >05:30 PM</option>
+                            <option value="18:00" >06:00 PM</option>
+                            <option value="18:30" >06:30 PM</option>
+                            <option value="19:00" >07:00 PM</option>
+                            <option value="19:30" >07:30 PM</option>
+                            <option value="20:00" >08:00 PM</option>
+                            <option value="20:30" >08:30 PM</option>
+                            <option value="21:00" >09:00 PM</option>
+                            <option value="21:30" >09:30 PM</option>
+                            <option value="22:00" >10:00 PM</option>
+                            <option value="22:30" >10:30 PM</option>
+                            <option value="23:00" >11:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-12">
+                        <select class="custom-select px-4">
+                            <option selected>Select A Car</option>
+                            <option value="1">Economy</option>
+                            <option value="2">Compact</option>
+                            <option value="3">Full Size</option>
+                            <option value="4">Estate</option>
+                            <option value="5">Minivan</option>
+                            <option value="6">SUV</option>
+                            <option value="7">Luxury</option>
+                            <option value="8">Electric</option>
+                            <option value="9">Cargo</option>
+                        </select>
+                    </div>
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-12">
+                        <button class="btn btn-primary btn-block" type="submit" style="height: 50px;">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Search End -->
+            {% block body %}{% endblock body %}
+    
+
+        <!-- Footer Start -->
+        <footer>
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                            <div class="row">
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="footer-container-left">
+                                        <h4>Get In Touch</h4>
+                                        <div class="contact-info">
+                                            <p><i class="fa fa-map-marker"></i>203 Fake St. Mountain View, <br> 11378 New York</p>
+                                            <p><i class="fa fa-envelope"></i>rental@example.com</p>
+                                            <p><i class="fa fa-phone"></i>+012-345-6789</p>
+                                        </div>
+                                        <div class="d-flex mt-4">
+                                            <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                                            <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                                            <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                                            <a class="btn btn-secondary btn-square rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="footer-container-left">
+                                        <h4>Quick Links</h4>
+                                        <ul>
+                                            <li><a href="/about">About Us</a></li>
+                                            <li><a href="/privacy-policy">Privacy Policy</a></li>
+                                            <li><a href="/terms">Terms & Condition</a></li>
+                                            <li><a href="/contact">Contact</a></li>
+                                            <li><a href="/category">Car Fleet</a></li>
+                                        </ul>     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                            <div class="footer-container-right">
+                                <h4>Newsletter</h4>
+                                <h6>Subscribe Our Newsletter</h6>
+                                <form action="#">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control border-white p-3" placeholder="Your Email">
+                                        <button class="btn btn-primary btn-signup">Sign Up</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="form-popup" id="myForm">
+            <form action="/action_page.php" class="form-container">
+              <h1>Login</h1>
+          
+              <label for="email"><b>Email</b></label>
+              <input type="text" placeholder="Enter Email" name="email" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" required>
+          
+              <button type="submit" class="btn">Login</button>
+              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+          </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 copyright">
+                        <p>Copyright &copy;
+                            <script>document.write(new Date().getFullYear());
+                             function openForm() {
+          document.getElementById("myForm").style.display = "block";
+        }
+        
+        function closeForm() {
+          document.getElementById("myForm").style.display = "none";
+        }
+                            </script>
+                            <a>Car Rental</a>. All Rights Reserved</p>
+                    </div>
+
+                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 template-by">				
+                        <p>Designed By </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer End -->
+
+        <script src="/static/jquery/jquery-3.6.0.min.js"></script>
+        <script src="/static/js/scroll.js"></script>
+        <script src="/static/js/slick.js"></script>
+        <script src="/static/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="/static/js/main.js"></script>
+        <script src="/static/js/datepicker.min.js"></script>
+        <script src="/static/js/datecar.js"></script>
+    </body>
+
+<!-- Mirrored from carrental.lanams.eu/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Dec 2022 16:50:13 GMT -->
+</html>
