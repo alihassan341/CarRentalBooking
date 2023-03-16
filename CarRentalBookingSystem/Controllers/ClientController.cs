@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Razor.Language;
+using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Net;
@@ -56,7 +57,7 @@ namespace CarRentalBookingSystem.Controllers
         //Route[("ClientLogin")]
         public async Task<ActionResult> ClientLogin(Client client)
         {
-            
+
 
             if (ModelState.IsValid)
             {
@@ -74,63 +75,87 @@ namespace CarRentalBookingSystem.Controllers
                 return NotFound();
             }
             return View();
-            
+
         }
 
         public ActionResult ForGotpasword()
         {
             return View();
         }
-            [HttpPost]
-        public async Task<ActionResult> ForGotpasword(Client client,int? id)
+        [HttpPost]
+        public async Task<ActionResult> ForGotpasword(Client client)
         {
-            if (client != null)
-             {
-                if ((client.Age == 0 || client.PhoneNumber == 0 || client.Id == 0)
-                    && client.Email != null)
-                {
-                    if (client.Password == null || client.Password == string.Empty)
-                    {
-                        var Password = await _context.Clients.Where(p => p.Email == client.Email && p.PetName == client.PetName).FirstOrDefaultAsync();
+            #region old code
+            //if (client != null)
+            //{
+            //    if ((client.Age == 0 || client.PhoneNumber == 0 || client.Id == 0)
+            //        && client.Email != null)
+            //    {
+            //        if (client.Password == null || client.Password == string.Empty)
+            //        {
+            //            var Password = await _context.Clients.Where(p => p.Email == client.Email && p.PetName == client.PetName).FirstOrDefaultAsync();
 
-                        if (Password == null)
-                        {
-                            return NotFound("Oops!, something went wrong");
-                        }
-                        else
-                        {
-                            //ForGotpasword Id = Password.T;
-                            //await _context.ForGotpaswords.AddAsync(Id);
-                            TempData["Id"] = Password.Id;
-                            //return View();
-                            return RedirectToAction("Recoveryourpasswordbyemail", "Client");
-                        }
-                    }
-                    else
-                    {
-                        //var client1 = await _context.Clients.Where(p => p.Id ==client.Id).FirstOrDefaultAsync();                    
-                        //await _context.Clients.AddAsync(client1);
-                        var Client = await _context.Clients.FindAsync(id);
-                        Client.Password = client.Password;
-                        //await _context.Clients 
+            //            if (Password == null)
+            //            {
+            //                return NotFound("Oops!, something went wrong");
+            //            }
+            //            else
+            //            {
+            //                //ForGotpasword Id = Password.T;
+            //                //await _context.ForGotpaswords.AddAsync(Id);                            
+            //                //return View();
+            //                return RedirectToAction("Recoveryourpasswordbyemail", "Client", new { Client = Password });
+            //            }
+            //        }
+            //        else
+            //        {
+            //            //var client1 = await _context.Clients.Where(p => p.Id ==client.Id).FirstOrDefaultAsync();                    
+            //            //await _context.Clients.AddAsync(client1);
+            //            var Client = await _context.Clients.FindAsync(id);
+            //            Client.Password = client.Password;
+            //            //await _context.Clients 
 
-                        return View();
-                    }
-                }
-               
-                else
-                {
-                    return View();
-                }
-                
-            }
-            else
+            //            return View();
+            //        }
+            //    }
+
+            //    else
+            //    {
+            //        return View();
+            //    }
+
+            //}
+            //else
+            //{
+            //    return View();
+            //}
+            #endregion
+            if (client is null)
             {
-                return View();
+                return NotFound("Oops!, something went wrong");
             }
+
+            if ((client.Age == 0 || client.PhoneNumber == 0 || client.Id == 0)
+                    && client.Email != null
+                    && client.PetName != null)
+            {
+                var Password = await _context.Clients.Where(p => p.Email == client.Email && p.PetName == client.PetName).FirstOrDefaultAsync();
+
+                if (Password is null)
+                {
+                    return NotFound("Oops!, something went wrong");
+                }
+                //return RedirectToAction("RecoverPas", new {Id = Password.Id});
+                return RedirectToAction("Recoveryourpasswordbyemail", new { Id = Password.Id});
+
+            } 
+
+            return View();
         }
 
+       
 
+        
         public ActionResult ClientProFile(string message)
         {
             ViewData["OK"] = message;
@@ -154,20 +179,24 @@ namespace CarRentalBookingSystem.Controllers
         }
 
 
-        public ActionResult Recoveryourpasswordbyemail()
+        public ActionResult Recoveryourpasswordbyemail(/*int Id*/)
         {
-            //var model = new Client();
-            //model.Id = Id;
+            //client.Password = string.Empty;
+            //TempData["Id"] = Id;
             return View();
         }
 
         [HttpPost]
-        public async Task<ActionResult> Recoveryourpasswordbyemail(Client client)
+        public async Task<ActionResult> Recoveryourpasswordbyemail(/*int Id,*/ Client client)
         {
-            int id = 13;
-            var Password = await _context.Clients.Where(o => o.Id == id).FirstOrDefaultAsync();
+            int Id = client.Id;
+            var Password = await _context.Clients.Where(o => o.Id == Id).FirstOrDefaultAsync();
             //string? d = Password ? != null Password.Password.Password.ToString();
 
+            if (Password is null)
+            {
+                return NotFound();
+            }
 
             Password.Password = client.Password;
             _context.Update(Password);
