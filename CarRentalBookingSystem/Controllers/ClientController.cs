@@ -44,7 +44,8 @@ namespace CarRentalBookingSystem.Controllers
             {
                 _context.Clients.Add(client);
                 await _context.SaveChangesAsync();
-                return View();
+                //return View();
+                return RedirectToAction("ClientLogin");
 
             }
             return BadRequest(ModelState);
@@ -57,25 +58,27 @@ namespace CarRentalBookingSystem.Controllers
         //Route[("ClientLogin")]
         public async Task<ActionResult> ClientLogin(Client client)
         {
-
-
-            if (ModelState.IsValid)
+            if (client is null)
             {
+                return View();
+            }
                 var LoginClient = await _context.Clients.Where(C =>
-            C.Email == client.Email && C.Password == client.Password)
+                C.Email == client.Email && C.Password == client.Password)
                 .FirstOrDefaultAsync();
+            if (LoginClient != null)
+            {
                 string message = LoginClient.FirstName + " " + LoginClient.LastName;
-                //Session["id"] = client.Id.ToString();
-                //Session["UerName"] = client.Email.ToString();
+
                 return RedirectToAction("ClientProFile", "Client", new { message = message });
             }
             else
             {
-                //ModelState.AddModelError("Email And Password IS reqrid");
-                return NotFound();
+                return NotFound("Oops!, something went wrong");
             }
-            return View();
-
+                //Session["id"] = client.Id.ToString();
+                //Session["UerName"] = client.Email.ToString();
+            
+            //return View();
         }
 
         public ActionResult ForGotpasword()

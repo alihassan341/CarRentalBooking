@@ -29,23 +29,23 @@ namespace CarRentalBookingSystem.Controllers
         }
 
             [HttpPost]
-            public async Task<ActionResult<ContactUs>> PostContactUs(ContactUs? Contactus)
+            public async Task<ActionResult<ContactUs>> Index(ContactUs Contactus)
             {
-            if (Contactus == null)
+            if (Contactus is null && Contactus.Id is 0)
             {
-                Contactus.Email = "basit@gmail.com";
+                Contactus.Email = "User@gmail.com";
                 Contactus.Subject = "Some info";
-                Contactus.Name = "Basit Khan";
+                Contactus.Name = "User";
                 Contactus.Message = "Info";
             }
 
-            if (ModelState.IsValid == true)
-                {
+                if (ModelState.IsValid)
+            {
                     _context.contactUs.Add(Contactus);
                     await _context.SaveChangesAsync();
                     ViewData["OkStatus"] = "your request successfully sended";
                     return View();
-                }
+            }
              return BadRequest(ModelState);
             }
     }
