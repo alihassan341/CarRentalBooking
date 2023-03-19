@@ -45,7 +45,8 @@ namespace CarRentalBookingSystem.Controllers
                 _context.Clients.Add(client);
                 await _context.SaveChangesAsync();
                 //return View();
-                return RedirectToAction("ClientLogin");
+                //return RedirectToAction("ClientLogin");
+                return RedirectToAction(nameof(ClientProFile));
 
             }
             return BadRequest(ModelState);
@@ -69,7 +70,7 @@ namespace CarRentalBookingSystem.Controllers
             {
                 string message = LoginClient.FirstName + " " + LoginClient.LastName;
 
-                return RedirectToAction("ClientProFile", "Client", new { message = message });
+                return RedirectToAction(nameof(ClientProFile), new { message = message });
             }
             else
             {
@@ -149,7 +150,7 @@ namespace CarRentalBookingSystem.Controllers
                     return NotFound("Oops!, something went wrong");
                 }
                 //return RedirectToAction("RecoverPas", new {Id = Password.Id});
-                return RedirectToAction("Recoveryourpasswordbyemail", new { Id = Password.Id});
+                return RedirectToAction(nameof(Recoveryourpasswordbyemail), new { Id = Password.Id});
 
             } 
 
@@ -178,7 +179,7 @@ namespace CarRentalBookingSystem.Controllers
         public ActionResult Logout()
         {
             //Session.Abandon();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), nameof(HomeController));
         }
 
 
@@ -206,7 +207,8 @@ namespace CarRentalBookingSystem.Controllers
             await _context.SaveChangesAsync();
 
             //return View();
-            return RedirectToAction("Index", "Home");
+            //return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), nameof(HomeController));
         }
 
         //[HttpDelete("{id}")]

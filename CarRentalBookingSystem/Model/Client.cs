@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Principal;
 
 namespace Car_Rental_booking.Model
@@ -25,7 +26,9 @@ namespace Car_Rental_booking.Model
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         public string Password { get; set; }
         //Need to ask haroon bhai or sir subhan
+        [ValidateNever]
         public ICollection<Booking>? Bookings { get; set; }
+        [ValidateNever]
         public ICollection<Testimonial>? Testimonials { get; set; }
 
     }

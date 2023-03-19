@@ -144,35 +144,35 @@
                                     <a href="#" id="menu" data-bs-toggle="dropdown" class="nav-link dropdown-toggle" data-bs-display="static">Cars</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
-                                            <a href="/category" class="dropdown-item">Economy</a>
+                                        <a asp-action="category" asp-controller="Home" class="dropdown-item">Economy</a>
                                         </li>
                                         <li class="dropdown-submenu">
-                                            <a href="category.html" class="dropdown-item">Compact</a>
+                                        <a asp-action="category" asp-controller="Home" class="dropdown-item">Compact</a>
                                         </li>
                                         <li class="dropdown-submenu">
-                                            <a href="/category" class="dropdown-item">Full Size</a>
+                                        <a asp-action="category" asp-controller="Home" class="dropdown-item">Full Size</a>
                                         </li>
                                         <li class="dropdown-submenu">
-                                            <a href="/category" class="dropdown-item">Estate</a>
+                                        <a asp-action="category" asp-controller="Home" class="dropdown-item">Estate</a>
                                         </li>
                                         <li class="dropdown-submenu">
-                                            <a href="/category" class="dropdown-item">Minivan</a>
+                                        <a asp-action="category" asp-controller="Home" class="dropdown-item">Minivan</a>
                                         </li>
                                         <li class="dropdown-submenu">
-                                            <a href="/category" class="dropdown-item">SUV</a>
+                                            <a asp-action="category" asp-controller="Home" class="dropdown-item">SUV</a>
                                         </li>
                                         <li class="dropdown-submenu">
-                                            <a href="/category" class="dropdown-item">Luxury</a>
+                                        <a asp-action="category" asp-controller="Home" class="dropdown-item">Luxury</a>
                                         </li>
                                         <li class="dropdown-submenu">
-                                            <a href="/category" class="dropdown-item">Electric</a>
+                                        <a asp-action="category" asp-controller="Home" class="dropdown-item">Electric</a>
                                         </li>
                                         <li class="dropdown-submenu">
-                                            <a href="/category" class="dropdown-item">Cargo</a>
+                                            <a asp-action="category" asp-controller="Home" class="dropdown-item">Cargo</a>
                                         </li>
                                     </ul>
-                                </li>                            
-                                <li><a href="/service" class="nav-item nav-link">Service</a></li>
+                                </li>
+                            <li><a asp-action="service" asp-controller="Home" class="nav-item nav-link">Service</a></li>
                             <li><a asp-controller="ContactUS" asp-action="Index" , class="nav-item nav-link">Contact</a></li>
                                 <li><a href="/Signup" class="nav-item nav-link">Signup</a></li>
                                 <li><a class="nav-item nav-link" onclick="openForm()">Login</a></li>
@@ -356,11 +356,11 @@
                                 <div class="footer-container-left">
                                     <h4>Quick Links</h4>
                                     <ul>
-                                        <li><a href="/about">About Us</a></li>
-                                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                                        <li><a aspfor="AboutUS"about">About Us</a></li>
+                                        <li><a asp-action="Privacy">Privacy Policy</a></li>
                                         <li><a href="/terms">Terms & Condition</a></li>
-                                        <li><a href="/contact">Contact</a></li>
-                                        <li><a href="/category">Car Fleet</a></li>
+                                        <li><a aspfor="ContactUS">Contact</a></li>
+                                        <li><a asp-action="category">Car Fleet</a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace Car_Rental_booking.Model
 {
@@ -15,11 +16,12 @@ namespace Car_Rental_booking.Model
         public string Color { get; set; }
         [Required]
         public string FleetModel { get; set; }
-        [Required]
-        public sbyte FleetImage { get; set; }
+        
+        public string FleetUrl { get; set; }
         [Required]
         public string FleetCatgory { get; set; }
-        public List<Booking> bookings { get; set; }
+        [ValidateNever]
+        public ICollection<Booking>? bookings { get; set; }
 
 
     }

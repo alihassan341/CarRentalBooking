@@ -28,6 +28,22 @@ namespace CarRentalBookingSystem.Controllers
             return View();
         }
 
+        
+        public IActionResult service()
+        {
+            return View();
+        }
+
+        public IActionResult category()
+        {
+            return View();
+        }
+
+        public IActionResult CarDetail()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

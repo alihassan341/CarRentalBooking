@@ -1,4 +1,6 @@
-﻿namespace Car_Rental_booking.Model
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
+namespace Car_Rental_booking.Model
 {
     public class Booking : BaseDto
     {
@@ -7,8 +9,9 @@
         public DateTime BookingDate { get; set; } = DateTime.Now;
 
         public string Status { get; set; }
-
+        [ValidateNever]
         public FleetMaster FleetMaster { get; set; }
+        [ValidateNever]
         public Client Client { get; set; }
 
     }
