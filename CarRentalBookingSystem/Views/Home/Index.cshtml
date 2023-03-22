@@ -1,4 +1,5 @@
-﻿@model Car_Rental_booking.Model.ContactUs
+﻿@using Car_Rental_booking.Model
+@model List<FleetMaster>
 
 <div class="ful-slider">
     <div class="container-fluid">
@@ -57,17 +58,21 @@
                 <h2>Car Fleet</h2>
             </div>
             <div class="row align-items-center category-slider category-slider-4">
-                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
-                    <div class="single-menu">
-                        <div class="menu-image">
-                            <img src="/static/image/category/category1.png" alt="Economy Cars" />
-                        </div>
-                        <div class="category-title">
-                            <a href="category.html">Economy Cars</a>
+              @foreach (var item in Model)
+                {
+                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                        <div class="single-menu">
+                            <div class="menu-image">
+                                <img src="@item.FleetUrl" alt="Economy Cars" height="200" width="200" />
+                            </div>
+                            <div class="category-title">
+                                <a asp-action="category" asp-controller="Home">@item.FleetName</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                }
+                
+                @*<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
                     <div class="single-menu">
                         <div class="menu-image">
                             <img src="/static/image/category/category2.png" alt="Compact Cars" />
@@ -146,7 +151,8 @@
                             <a href="category.html">Cargo Cars</a>
                         </div>
                     </div>
-                </div>
+                </div>*@
+                #endregion
             </div>
         </div>
     </div>
@@ -719,7 +725,7 @@
                 <div class="row">
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <div class="contact-form">
-                            <form method="POST">
+                            @*<form method="POST">
                                 <div class="row">
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <input asp-for="Name" type="text" class="form-control" placeholder="Your Name" />
@@ -736,7 +742,7 @@
                                     <textarea class="form-control" asp-for="Message" rows="5" placeholder="Message"></textarea>
                                 </div>
                                 <div><button asp-controller="ContactUS" asp-action="Index" class="btn btn-primary" type="submit">Send Message</button></div>
-                            </form>
+                            </form>*@
                         </div>
                     </div>
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -829,7 +835,3 @@
         </div>
     </div>
 </div>
-<!-- Team End -->
-@*{% endblock body %}*@
-
-

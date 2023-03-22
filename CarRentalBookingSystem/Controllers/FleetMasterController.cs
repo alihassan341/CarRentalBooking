@@ -14,10 +14,10 @@ namespace CarRentalBookingSystem.Controllers
         private readonly Contaxt _context;
         private readonly IWebHostEnvironment _hostEnviroment;
 
-        public FleetMasterController(Contaxt context, IWebHostEnvironment hostEnvironment )
+        public FleetMasterController(Contaxt context, IWebHostEnvironment hostEnvironment)
         {
-            _context = context;        
-            _hostEnviroment  = hostEnvironment;
+            _context = context;
+            _hostEnviroment = hostEnvironment;
 
         }
         public IActionResult Index()
@@ -33,11 +33,11 @@ namespace CarRentalBookingSystem.Controllers
 
         public IActionResult VehicleAdd()
         {
-            return  View();
+            return View(_context.FleetMasters);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult<FleetMaster>> VehicleAdd(FleetMaster fleetMaster, IFormFile? file)
         {
             //Need to ask haroon bhai or sir subhan
@@ -45,33 +45,47 @@ namespace CarRentalBookingSystem.Controllers
             {
                 string wwwRootPath = _hostEnviroment.WebRootPath;
 
-             if (file != null)
-             {
+                if (file != null)
+                {
                     string filename = Guid.NewGuid().ToString();
                     string uplodes = Path.Combine(wwwRootPath, @"images\vehicle");
                     var extension = Path.GetExtension(file.FileName);
 
-                using (var filestream = new FileStream(Path.Combine(uplodes,filename+extension),FileMode.Create))
-                {
-                    await file.CopyToAsync(filestream);
+                    if(fleetMaster.FleetUrl != null)
+                    {
+                        var oldImagepath = Path.Combine(wwwRootPath, fleetMaster.FleetUrl.TrimStart('\\'));
+                        if(System.IO.File.Exists(oldImagepath)) 
+                        {
+                            System.IO.File.Delete(oldImagepath);
+                        }
+                    }
 
-                        fleetMaster.FleetUrl = @"\images\vehicle" + filename + extension;
+                    using (var filestream = new FileStream(Path.Combine(uplodes, filename + extension), FileMode.Create))
+                    {
+                        await file.CopyToAsync(filestream);
+
+                        fleetMaster.FleetUrl = @"\images\vehicle\" + filename + extension;
+                    }
                 }
-             }
-
-                //_context.Add(fleetMaster);
-                await _context.FleetMasters.AddAsync(fleetMaster);
+                if(fleetMaster.Id is 0)
+                {
+                    await _context.FleetMasters.AddAsync(fleetMaster);
+                }
+                else
+                {
+                     _context.FleetMasters.Update(fleetMaster);
+                }                
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-           }
+            }
 
-            return View();
+            
         }
-
 
         public IActionResult Cardetail()
         {
-            return View ();
+            return View();
         }
     }
 }

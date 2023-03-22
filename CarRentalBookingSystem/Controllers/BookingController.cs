@@ -8,7 +8,10 @@ namespace CarRentalBookingSystem.Controllers
     {
         private readonly Contaxt _context;
 
-
+        public BookingController()
+        {
+             
+        }
 
         public IActionResult Index()
         {
